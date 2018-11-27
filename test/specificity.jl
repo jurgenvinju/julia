@@ -261,3 +261,9 @@ end
 
 @test  args_morespecific(Tuple{Type{T},T} where T<:BitArray,
                          Tuple{Type{BitArray},Any})
+
+@test  args_morespecific(Tuple{Array{Int}, Integer}, Tuple{AbstractArray})
+
+@test !args_morespecific(Tuple{AbstractArray}, Tuple{Any, Colon})
+
+@test !args_morespecific(Tuple{Array{Int}, Integer}, Tuple{Any, Colon})

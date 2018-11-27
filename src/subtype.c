@@ -2552,6 +2552,8 @@ static int tuple_morespecific(jl_datatype_t *cdt, jl_datatype_t *pdt, int invari
     jl_vararg_kind_t ckind = jl_vararg_kind(clast);
     int cva = ckind > JL_VARARG_INT;
     int pva = jl_vararg_kind(jl_tparam(pdt,plen-1)) > JL_VARARG_INT;
+    if (!cva && !pva && plen > clen)
+        return 0;
     int cdiag = 0, pdiag = 0;
     int some_morespecific = 0;
     while (1) {
